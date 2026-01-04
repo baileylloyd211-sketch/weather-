@@ -192,7 +192,19 @@ for q in QUESTION_BANK:
     st.caption(SCALE[val])
     answers[q["id"]] = val
 
-def evaluate(domain_name: str, answers_dict: dict) -> dict:
+CAPACITY_VARS = {"Baseline", "Load", "Constraints"}
+INTERPRETATION_VARS = {"Signal", "Feedback", "Incentives"}
+TIME_VARS = {"Drift"}
+
+def evaluate(drivers = sorted(weighted.items(), key=lambda x: x[1], reverse=True)
+
+high = {k: v for k, v in drivers if v >= 2.5}
+
+capacity_hit = any(k in CAPACITY_VARS for k in high)
+interpretation_hit = any(k in INTERPRETATION_VARS for k in high)
+drift_hit = "Drift" in high
+)[:3]
+) -> dict:
     # Bucket weighted averages
     buckets = defaultdict(list)
     for q in QUESTION_BANK:
@@ -211,9 +223,17 @@ def evaluate(domain_name: str, answers_dict: dict) -> dict:
     else:
         risk = "Low"
 
-   top_driver = drivers[0][0]  # e.g., "Constraints"
-text = DOMAIN_TEXT[domain_name].get(top_driver, DOMAIN_TEXT[domain_name]["Drift"])
- 
+   if capacity_hit and interpretation_hit:
+    key = "Capacity+Interpretation"
+elif capacity_hit:
+    key = "Capacity"
+elif interpretation_hit:
+    key = "Interpretation"
+elif drift_hit:
+    key = "Drift"
+else:
+    key = drivers[0][0]
+
 
     return {
         "risk": risk,
