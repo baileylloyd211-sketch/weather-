@@ -48,7 +48,34 @@ def zone_name(score_0_100: float) -> str:
 
 def clamp(n, lo, hi):
     return max(lo, min(hi, n))
+# --------------------------
+# Setup Screen (Lens Picker)
+# --------------------------
+if st.session_state.stage == "setup":
 
+    st.subheader("Pick a lens to begin")
+
+    st.session_state.lens = st.radio(
+        "Which lens do you want?",
+        ["Interpersonal", "Financial", "Big Picture"],
+        index=["Interpersonal", "Financial", "Big Picture"].index(st.session_state.lens),
+        key="lens_picker"
+    )
+
+    st.caption("This only changes which questions are asked and how results are interpreted.")
+
+    if st.button("Start", type="primary"):
+        bank = QUESTION_BANK[st.session_state.lens][:]
+        random.shuffle(bank)
+
+        st.session_state.active_questions = random.sample(
+            bank, k=min(25, len(bank))
+        )
+        st.session_state.answers = {}
+        st.session_state.idx = 0
+
+        st.session_state.stage = "questions"
+        st.rerun()
 # --------------------------
 # Question Bank (25 per lens)
 # Each question: id, text, variable, weight, reverse
