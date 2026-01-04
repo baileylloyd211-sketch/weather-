@@ -204,7 +204,7 @@ capacity_hit = any(k in CAPACITY_VARS for k in high)
 interpretation_hit = any(k in INTERPRETATION_VARS for k in high)
 drift_hit = "Drift" in high
 )[:3]
-) -> dict:
+-> dict:
     # Bucket weighted averages
     buckets = defaultdict(list)
     for q in QUESTION_BANK:
