@@ -211,8 +211,9 @@ def evaluate(domain_name: str, answers_dict: dict) -> dict:
     else:
         risk = "Low"
 
-    drivers = sorted(weighted.items(), key=lambda x: x[1], reverse=True)[:3]
-    text = DOMAIN_TEXT[domain_name]
+   top_driver = drivers[0][0]  # e.g., "Constraints"
+text = DOMAIN_TEXT[domain_name].get(top_driver, DOMAIN_TEXT[domain_name]["Drift"])
+ 
 
     return {
         "risk": risk,
