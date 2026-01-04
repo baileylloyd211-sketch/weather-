@@ -61,6 +61,9 @@ DOMAIN_WEIGHTS = {
     "Life Path":     {"Baseline": 0.9, "Load": 1.2, "Signal": 1.3, "Feedback": 1.0, "Incentives": 1.3, "Constraints": 0.9, "Drift": 1.7},
 }
 
+CAPACITY_VARS = {"Baseline", "Load", "Constraints"}
+INTERPRETATION_VARS = {"Signal", "Feedback", "Incentives"}
+
 DOMAIN_TEXT = {
     "Financial": {
         "Constraints": {
@@ -196,34 +199,17 @@ CAPACITY_VARS = {"Baseline", "Load", "Constraints"}
 INTERPRETATION_VARS = {"Signal", "Feedback", "Incentives"}
 TIME_VARS = {"Drift"}
 
-def evaluate(drivers = sorted(weighted.items(), key=lambda x: x[1], reverse=True)
+def evaluate(drivers = sorted(weighted.items(), key=lambda x: x[1], reverse=True)[:3]
 
-high = {k: v for k, v in drivers if v >= 2.5}
+# Pattern detection (simple + predictable)
+THRESH = 2.6  # tune later
+high_vars = {name for name, score in weighted.items() if score >= THRESH}
 
-capacity_hit = any(k in CAPACITY_VARS for k in high)
-interpretation_hit = any(k in INTERPRETATION_VARS for k in high)
-drift_hit = "Drift" in high
-)[:3]
--> dict:
-    # Bucket weighted averages
-    buckets = defaultdict(list)
-    for q in QUESTION_BANK:
-        buckets[q["variable"]].append(answers_dict[q["id"]] * q["weight"])
-    avg = {k: sum(v) / len(v) for k, v in buckets.items()}
+capacity_hit = any(v in high_vars for v in CAPACITY_VARS)
+interpretation_hit = any(v in high_vars for v in INTERPRETATION_VARS)
+drift_hit = "Drift" in high_vars
 
-    # Apply lens weights
-    w = DOMAIN_WEIGHTS[domain_name]
-    weighted = {k: avg.get(k, 0.0) * w.get(k, 1.0) for k in avg}
-
-    overall = sum(weighted.values()) / max(len(weighted), 1)
-    if overall >= 3.0:
-        risk = "High"
-    elif overall >= 2.0:
-        risk = "Moderate"
-    else:
-        risk = "Low"
-
-   if capacity_hit and interpretation_hit:
+if capacity_hit and interpretation_hit:
     key = "Capacity+Interpretation"
 elif capacity_hit:
     key = "Capacity"
@@ -232,7 +218,10 @@ elif interpretation_hit:
 elif drift_hit:
     key = "Drift"
 else:
-    key = drivers[0][0]
+    key = "Default"
+
+text = DOMAIN_TEXT[domain_name][key]
+
 
 
     return {
