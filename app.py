@@ -62,20 +62,118 @@ DOMAIN_WEIGHTS = {
 }
 
 DOMAIN_TEXT = {
-    "Relationship": {
-        "missing": "Unmodeled load on each person’s regulatory capacity.",
-        "distortion": "Capacity shortfall gets misread as intent (not caring / disrespect), triggering defensiveness and feedback suppression.",
-        "lever": "No interpretation until load is named. Surface what’s draining capacity before assigning meaning.",
-    },
     "Financial": {
-        "missing": "Baseline instability + constraints consuming planning bandwidth.",
-        "distortion": "Short-horizon survival behavior gets misread as irresponsibility; compounding penalties look like character failure instead of constraint math.",
-        "lever": "Stabilize one constraint first (buffer, predictability, deadline control) before optimizing anything else.",
+        "Constraints": {
+            "missing": "Hard constraints are consuming planning capacity.",
+            "distortion": "You read constraint effects as personal failure; survival moves look like ‘bad choices’ instead of predictable math.",
+            "lever": "Stabilize one constraint first (deadline control, minimum buffer, or fixed essential cost).",
+        },
+        "Baseline": {
+            "missing": "Baseline instability (no buffer/predictability) is driving volatility.",
+            "distortion": "Every decision feels urgent; long-term planning collapses into short-horizon patching.",
+            "lever": "Build predictability: one buffer, one routine bill day, one protected planning block.",
+        },
+        "Signal": {
+            "missing": "You don’t have a clear scoreboard for what’s improving.",
+            "distortion": "Effort gets spent without measurable gain; you keep changing tactics without learning.",
+            "lever": "Define 2–3 financial signals (cash-on-hand days, fixed costs, debt minimums) and track weekly.",
+        },
+        "Load": {
+            "missing": "Pre-load (stress + cognitive clutter) is eating the bandwidth required to plan.",
+            "distortion": "You interpret shutdown as laziness; it’s capacity starvation.",
+            "lever": "Reduce pre-load before planning: clear one recurring stressor, then plan in a short sprint (15 min).",
+        },
+        "Feedback": {
+            "missing": "Feedback loops are too delayed or punishing to learn from.",
+            "distortion": "You only learn after damage, so you start avoiding decisions.",
+            "lever": "Shorten the loop: weekly review + one rule change at a time.",
+        },
+        "Incentives": {
+            "missing": "Short-term relief is being rewarded more than stability.",
+            "distortion": "You ‘win’ today in ways that guarantee next week’s loss.",
+            "lever": "Change the reward: make stability the win (buffer-first, fixed-cost-first).",
+        },
+        "Drift": {
+            "missing": "Effort is maintaining position, not changing state.",
+            "distortion": "Busyness feels like progress; nothing accumulates.",
+            "lever": "Pick one state-change target (buffer size, debt reduction, income step) and protect it.",
+        },
     },
+
+    "Relationship": {
+        "Feedback": {
+            "missing": "Feedback is not safe enough to correct early.",
+            "distortion": "Small issues become identity fights; tone replaces topic.",
+            "lever": "Create a safe loop: short check-ins, no verdicts, one issue at a time.",
+        },
+        "Load": {
+            "missing": "Unspoken load is consuming relational capacity.",
+            "distortion": "Capacity shortfall gets read as not caring or disrespect.",
+            "lever": "Name load before meaning. ‘What’s draining you this week?’ comes first.",
+        },
+        "Signal": {
+            "missing": "Signals are ambiguous or indirect.",
+            "distortion": "You guess intent and act on guesses.",
+            "lever": "Make signals explicit: ask for clarity, reflect back, confirm meaning.",
+        },
+        "Incentives": {
+            "missing": "Peace/avoidance is being rewarded over honesty.",
+            "distortion": "The relationship trains silence; resentment grows quietly.",
+            "lever": "Reward truth gently: acknowledge honesty without punishment.",
+        },
+        "Baseline": {
+            "missing": "Baseline instability is amplifying conflict intensity.",
+            "distortion": "Every disagreement feels existential.",
+            "lever": "Stabilize the baseline: sleep, routine, and time windows for hard talks.",
+        },
+        "Constraints": {
+            "missing": "Real limits aren’t being spoken as limits.",
+            "distortion": "Limits get interpreted as rejection.",
+            "lever": "State constraints plainly: ‘I can’t do X right now’ without defense.",
+        },
+        "Drift": {
+            "missing": "Connection is degrading through neglect rather than crisis.",
+            "distortion": "You think it’s fine because nothing exploded.",
+            "lever": "Add one recurring connection ritual that’s small and reliable.",
+        },
+    },
+
     "Life Path": {
-        "missing": "Signal ambiguity plus incentive pressure causing motion without state change.",
-        "distortion": "Effort is mistaken for progress; endurance replaces direction; drift becomes ‘normal life.’",
-        "lever": "Run an incentive + constraint audit. Change one driver of drift before adding more effort.",
+        "Drift": {
+            "missing": "Trajectory is unmanaged; effort is maintenance, not movement.",
+            "distortion": "Endurance is mistaken for progress.",
+            "lever": "Choose one measurable state-change and cut everything that doesn’t serve it for 30 days.",
+        },
+        "Signal": {
+            "missing": "Your scoreboard for ‘better’ is unclear.",
+            "distortion": "You keep optimizing behavior without learning what works.",
+            "lever": "Define 3 signals: energy, stability, forward motion—track weekly.",
+        },
+        "Incentives": {
+            "missing": "You’re being rewarded for compliance over alignment.",
+            "distortion": "Life becomes performance; meaning erodes.",
+            "lever": "Change the incentive map: stop feeding the loop that rewards you for shrinking.",
+        },
+        "Load": {
+            "missing": "Load is too high for reflection and choice.",
+            "distortion": "You interpret numbness as ‘this is just life.’",
+            "lever": "Lower load enough to think: one subtraction before any addition.",
+        },
+        "Feedback": {
+            "missing": "Feedback is noisy or unsafe, so you can’t calibrate.",
+            "distortion": "You overcorrect based on fear instead of signal.",
+            "lever": "Create a clean loop: weekly review + one experiment.",
+        },
+        "Baseline": {
+            "missing": "Baseline instability keeps you reactive.",
+            "distortion": "Everything feels urgent; nothing compounds.",
+            "lever": "Stabilize the baseline: routine, buffer, recovery.",
+        },
+        "Constraints": {
+            "missing": "Constraints are real but unowned, so you fight reality.",
+            "distortion": "You blame yourself for physics.",
+            "lever": "Name constraints and design inside them—then renegotiate one.",
+        },
     },
 }
 
